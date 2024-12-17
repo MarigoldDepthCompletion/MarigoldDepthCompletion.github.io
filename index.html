@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Marigold Depth Completion" />
+    <meta
+      name="keywords"
+      content="depth, completion, monocular, scene, reconstruction"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:image:src"
+      content="http://MarigoldDepthCompletion.github.io/images/logo_square.png"
+    />
+    <meta name="twitter:title" content="Marigold-DC" />
+    <meta
+      name="twitter:description"
+      content="Zero-Shot Monocular Depth Completion with Guided Diffusion"
+    />
+    <meta name="twitter:creator" content="@AntonObukhov1" />
+
+    <title>Marigold-DC: Zero-Shot Monocular Depth Completion with Guided Diffusion</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⇆</text></svg>"
+    />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-1FWSVCGZTG"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag("js", new Date());
+
+      gtag("config", "G-1FWSVCGZTG");
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./css/bulma.min.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/jquery.event.move.js"></script>
+    <script src="./js/fontawesome.all.min.js"></script>
+
+
+    <!--MathJax-->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+        },
+        svg: {
+          fontCache: "global",
+        },
+      };
+    </script>
+    <script
+      type="text/javascript"
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+  </head>
+
+  <body>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">
+                ⇆ Marigold-DC: Zero-Shot Monocular Depth Completion with Guided Diffusion
+              </h1>
+
+              <!-- Authors -->
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://www.linkedin.com/in/massimiliano-viola/" target="_blank" rel="noopener noreferrer">
+                    Massimiliano Viola</a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://www.linkedin.com/in/kevin-qu-b3417621b/" target="_blank" rel="noopener noreferrer">
+                    Kevin Qu</a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://nandometzger.github.io/" target="_blank" rel="noopener noreferrer">
+                    Nando Metzger</a>,
+                </span>
+                <span class="author-block">
+                  <a href="http://www.kebingxin.com/" target="_blank" rel="noopener noreferrer">
+                    Bingxin Ke</a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://scholar.google.ch/citations?user=Wle2GmkAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+                    Alexander Becker</a>,
+                </span>
+                <br />
+                <span class="author-block">
+                  <a href="https://scholar.google.com/citations?user=FZuNgqIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+                    Konrad Schindler</a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://www.obukhov.ai" target="_blank" rel="noopener noreferrer">
+                    Anton Obukhov</a>
+                </span>
+              </div>
+              <!-- Affiliations -->
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  Photogrammetry and Remote Sensing, ETH Zürich
+                </span>
+              </div>
+
+              <!-- Buttons -->
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <span class="link-block">
+                    <a
+                      href="https://arxiv.org/abs/2412.xxxxx"
+                      rel="noopener noreferrer"
+                      class="external-link button is-normal is-rounded is-dark disabled"
+                    >
+                      <span class="icon">
+                        <i class="fas fa-file-pdf" style="color: orangered"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+                  <!-- Code Link. -->
+                  <span class="link-block">
+                    <a
+                      href="https://github.com/prs-eth/Marigold-DC"
+                      rel="noopener noreferrer"
+                      class="external-link button is-normal is-rounded is-dark disabled"
+                    >
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+                  <!-- Hugging Face Space -->
+                  <span class="link-block">
+                    <a
+                      href="https://huggingface.co/spaces/prs-eth/marigold-dc"
+                      rel="noopener noreferrer"
+                      class="external-link button is-normal is-rounded is-dark disabled"
+                    >
+                      <span class="icon">&#129303;</span>
+                      <span>Demo</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <img id="teaser" width="100%" src="./images/teaser.jpg" alt="Teaser image demonstrating Marigold Depth Completion."/>
+          <h2 class="subtitle has-text-centered">
+            <span class="methodname">Marigold-DC</span> is the new state-of-the-art depth completion in the wild.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pt-0">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+
+            <!-- Abstract -->
+            <h3 class="title is-3">Abstract</h3>
+            <div class="content has-text-justified">
+              <p>
+                Depth completion upgrades sparse depth measurements into dense depth maps, guided by a conventional
+                image. Existing methods for this highly ill-posed task operate in tightly constrained settings, and tend
+                to struggle when applied to images outside the training domain, as well as when the available depth
+                measurements are sparse, irregularly distributed, or of varying density. Inspired by recent advances in
+                monocular depth estimation, we reframe depth completion as image-conditional depth map generation,
+                guided by a sparse set of measurements. Our method, <span class="methodname">Marigold-DC</span>, builds
+                on a pretrained latent diffusion model (LDM) for depth estimation and injects the depth observations as
+                test-time guidance, via an optimization scheme that runs in tandem with the iterative inference of
+                denoising diffusion. The method exhibits excellent zero-shot generalization across a diverse range of
+                environments and handles even extremely sparse guidance effectively. Our results suggest that
+                contemporary monodepth priors greatly robustify depth completion: it may be better to view the task as
+                recovering dense depth from (dense) image pixels, guided by sparse depth; rather than as inpainting
+                (sparse) depth, guided by an image.
+              </p>
+            </div>
+
+            <!-- Method. -->
+            <h3 class="title is-3">How it works</h3>
+            <div class="content has-text-justified">
+              <img
+                id="method_inference"
+                width="100%"
+                src="./images/method.png"
+                alt="Method"
+              />
+
+              <p>
+                <b>Overview of the <span class="methodname">Marigold-DC</span> Inference Scheme.</b>
+                Our method extends the existing Marigold architecture (above the dashed line) by incorporating
+                task-specific guidance mechanisms (below the line). Starting from the current depth latent variable
+                $\mathbf{z}_t^{(\mathbf{d})}$, our method calculates a “preview” of the final denoised depth map via
+                the Tweedie formula. This preview is then decoded and scaled using the learnable scale parameter
+                $\hat{a}$ and shift parameter $\hat{b}$. We backpropagate the loss (red arrows) between the “preview”
+                and the sparse depth and adjust the latent simultaneously with the scale and shift. Finally, we execute
+                a scheduler step to proceed to the next denoising iteration.
+              </p>
+
+              <!-- Quantitative table -->
+              <h2 class="title has-text-centered">
+                Qualitative comparison with other methods
+              </h2>
+
+              <p>
+                <b>Quantitative comparison</b> of <span class="methodname">Marigold-DC</span> with state-of-the-art
+                depth completion methods on several zero-shot benchmarks. All metrics are presented in absolute terms;
+                <b>bold</b> numbers are the best, <u>underscored</u> second best. In most cases, our method outperforms
+                other approaches in both indoor and outdoor scenes, despite not having seen a real depth sample nor
+                being trained for the depth completion task.
+              </p>
+
+              <img id="comparison" src="./images/table.png" alt="Comparison with other methods"/>
+
+              <p class="mt-5">
+                Refer to the pdf paper linked above for more details on qualitative, quantitative, and ablation studies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pt-0" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">Citation</h2>
+        <pre class="selectable"><code>@misc{viola2024marigolddc,
+    title={Marigold-DC: Zero-Shot Monocular Depth Completion with Guided Diffusion},
+    author={Massimiliano Viola and Kevin Qu and Nando Metzger and Bingxin Ke and Alexander Becker and Konrad Schindler and Anton Obukhov},
+    year={2024},
+    eprint={2412.xxxxx},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV},
+}</code></pre>
+      </div>
+    </section>
+
+    <footer class="footer pt-4 pb-0">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                Website template based on
+                <a href="https://github.com/nerfies/nerfies.github.io">
+                  Nerfies
+                </a>
+                and licensed under
+                <a
+                  rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/"
+                >
+                  CC-BY-SA-4.0 </a
+                >.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
